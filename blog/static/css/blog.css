@@ -62,9 +62,10 @@ h1, h5 {
 .tamanho {
     height: 300px;
 }
- body{
-         background-color: #6d1f82;
- }
+
+body{
+    background-color: #6d1f82;
+}
 
 .rodape {
     background-color: #ffffff;
