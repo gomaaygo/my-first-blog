@@ -37,6 +37,21 @@ h1, h5 {
 .post-form textarea, .post-form input {
     width: 100%;
     height: 350px;
+    background-color: #420a4a;
+}
+
+.fundo-form {
+
+    margin-left: -100px;
+    margin-right: -100px
+}
+
+textarea {
+    color: #ffffff;
+}
+
+input {
+    color: #ffffff;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
@@ -72,4 +87,9 @@ body{
     color: #65126b;
     width: 100%;
     height: 100px;
+}
+
+.botao-salvar {
+    background-color: #ffffff;
+    color: #65126b;
 }

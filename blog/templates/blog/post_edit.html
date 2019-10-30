@@ -2,10 +2,13 @@
 
 {% block content %}
     <center><h1>{{ acao }} Postagem</h1></center>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">ATUALIZAR</button>
-    </form>
+    <div class="">
+        <form method="POST" class=" post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn botao-salvar">ATUALIZAR</button>
+        </form>
+    </div>
+
     <br><br><br><br>
 
 {% endblock %}
