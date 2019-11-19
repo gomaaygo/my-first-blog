@@ -5,13 +5,15 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 def post_list(request):
     posts = Post.objects.filter(
         published_date__lte=timezone.now()).order_by('published_date')
 
-    return render(request, 'blog/post_list.html', {'posts': posts, 'acao': 'Postagens'})
+    return render(request, 'blog/post_list.html', {'posts': posts, 'acao':
+                                                   'Postagens'})
 
 
 def post_detail(request, pk):
@@ -31,7 +33,8 @@ def post_new(request):
     else:
         form = PostForm()
 
-    return render(request, 'blog/post_edit.html', {'form': form, 'acao': 'Adicionar'})
+    return render(request, 'blog/post_edit.html', {'form': form, 'acao':
+                                                   'Adicionar'})
 
 
 def post_edit(request, pk):
@@ -47,4 +50,26 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
 
-    return render(request, 'blog/post_edit.html', {'form': form, 'acao': 'Editar'})
+    return render(request, 'blog/post_edit.html', {'form': form, 'acao':
+                                                   'Editar'})
+
+
+def page_login(request):
+    return render(request, 'blog/login.html', {})
+
+
+def login_views(request):
+    username = request.POST['user']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return render(request, 'blog/perfil.html')
+
+    else:
+        return render(request, 'blog/login.html', {})
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'blog/login.html', {})

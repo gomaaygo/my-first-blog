@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+        {% if user.is_authenticated %}
+        <h3>Olá {{user.username}}, seja bem vindo(a)!</h3>
+
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+
+
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+
+{% endblock %}
