@@ -95,7 +95,7 @@ def go_send(request):
     user = get_object_or_404(User, username=username)
     user.set_password(password)
     user.save()
-    recipient_list = ['maiurygarcia@gmail.com', ]
+    recipient_list = [email_from, ]
     send_mail(subject, message, email_from, recipient_list)
     msg = 'Seu email foi enviado com sucesso.'
     return render(request, 'blog/esqueci_senha.html', {'msg': msg})
