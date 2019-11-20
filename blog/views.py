@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.utils import timezone
 from .models import Post
-from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
+from .forms import PostForm, PassForm
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
+from django.utils.crypto import get_random_string
+from django.utils import timezone
 
 
 def post_list(request):
@@ -73,3 +74,28 @@ def login_views(request):
 def logout_view(request):
     logout(request)
     return render(request, 'blog/login.html', {})
+
+
+def esqueci_senha(request):
+    form = PassForm()
+    return render(request, 'blog/esqueci_senha.html', {'form': form})
+
+
+def senha():
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    return get_random_string(10, chars)
+
+
+def go_send(request):
+    password = senha()
+    subject = 'Olá - Está é uma menssagem da sua app django'
+    message = ' Sua nova senha: ' + password
+    email_from = request.POST['email']
+    username = request.POST['username']
+    user = get_object_or_404(User, username=username)
+    user.set_password(password)
+    user.save()
+    recipient_list = ['maiurygarcia@gmail.com', ]
+    send_mail(subject, message, email_from, recipient_list)
+    msg = 'Seu email foi enviado com sucesso.'
+    return render(request, 'blog/esqueci_senha.html', {'msg': msg})

@@ -9,4 +9,6 @@ urlpatterns = [
     path('page/login', views.page_login, name='page_login'),
     path('login_views', views.login_views, name='login_views'),
     path('logout_view', views.logout_view, name='logout_view'),
+    path('esqueci_senha', views.esqueci_senha, name='esqueci_senha'),
+    path('go_send', views.go_send, name='go_send'),
 ]
