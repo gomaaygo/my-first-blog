@@ -33,7 +33,7 @@
                         <a  href="{% url 'logout_view' %}" >Sair</a>
                     </li>
                 {% else %}
-                    <li><a href="#">Cadastre-se</a></li>
+                    <li><a href="{% url 'criar_usuario' %}">Cadastre-se</a></li>
                     <li><a href="{% url 'page_login' %}">Entre</a></li>
                 {% endif %}
 
@@ -47,7 +47,7 @@
                 <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             {% else %}
                 <ul id="nav-mobile" class="sidenav">
-                    <li><a href="#">Cadastre-se</a></li>
+                    <li><a href="{% url 'criar_usuario' %}">Cadastre-se</a></li>
                   <li><a href="{% url 'page_login' %}">Entre</a></li>
                 </ul>
                 <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>

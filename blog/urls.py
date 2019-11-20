@@ -11,4 +11,6 @@ urlpatterns = [
     path('logout_view', views.logout_view, name='logout_view'),
     path('esqueci_senha', views.esqueci_senha, name='esqueci_senha'),
     path('go_send', views.go_send, name='go_send'),
+    path('criar_usuario', views.criar_usuario, name='criar_usuario'),
+
 ]

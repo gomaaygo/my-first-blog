@@ -1,5 +1,5 @@
 from .models import Post
-from .forms import PostForm, PassForm
+from .forms import PostForm, PassForm, FormCadastro
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -99,3 +99,21 @@ def go_send(request):
     send_mail(subject, message, email_from, recipient_list)
     msg = 'Seu email foi enviado com sucesso.'
     return render(request, 'blog/esqueci_senha.html', {'msg': msg})
+
+
+def criar_usuario(request):
+    if request.method == "POST":
+        form = FormCadastro(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user = authenticate(
+                username=user.username, password=form.cleaned_data['password1']
+            )
+            login(request, user)
+            return redirect('post_list')
+    else:
+        form = FormCadastro()
+    context = {
+        'form': form
+    }
+    return render(request, 'blog/cadastro.html', context)

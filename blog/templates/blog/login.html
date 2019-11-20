@@ -6,7 +6,7 @@
         <center><h1>Entre</h1></center>
     </div>
 
-    <form action="{% url 'login_views' %}" method="post">
+    <form action="{% url 'login_views' %}" method="post" autocomplete="off">
 
     {% csrf_token %}
     <h6>Login</h6>
